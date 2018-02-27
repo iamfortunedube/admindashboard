@@ -9,8 +9,8 @@ echo '
                     <img src="assets/avatar.png" width="70" height="70" alt="image" />
                 </div>
                 <div class="userWelcome">
-                    <p class="welcomeM">Welcome <b>Admin</b></p>
-                    <p class="messageTrans">Username: admin</p>
+                    <p class="welcomeM">Welcome <b>'.$_SESSION['name'].'</b></p>
+                    <p>Username: '.$_SESSION['username'].'</p>
                 </div>
                 <li><a id="dashboard" href="dashboard.php"><i class="fas fa-eye"></i> Overview</a></li>
                 <li><a id="members" href="members.php"><i class="fas fa-users"></i> Members</a></li>
@@ -21,7 +21,7 @@ echo '
                 <li><a id="sign-out" href="server/logOut.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
             </div>
         </li>
-        <li style="position:fixed;bottom:0;decoration: none; left:0; margin: 0% -2%"><img src="assets/logoCC.png" width="200" height="200" alt="logo"/></li>
+        <li style="position:fixed;bottom:0;decoration: none; left:0; margin: 0% -2%; z-index: -1;"><img src="assets/logoCC.png" width="200" height="200" alt="logo"/></li>
     </ul>    
 </div>
 ';

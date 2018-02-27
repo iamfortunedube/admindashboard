@@ -39,5 +39,6 @@
                 </div>
             </div>
         </div>
+        <hr>
     </div>
 </div>

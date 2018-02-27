@@ -23,10 +23,10 @@ html,body {
 .fomrLogin {
     background: rgba(255, 255, 255, 0.7);
     position: absolute;
-    margin: 4% 25%;
+    margin: 1% 9%;
     padding: 0;
     width: 720px;
-    height: 390px;
+    height: 400px;
     z-index: 2;
     border: 5px solid rgb(218,165,32);
     border-radius: 10px;

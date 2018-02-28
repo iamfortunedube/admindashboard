@@ -2,6 +2,7 @@
 <?php 
       include("inc/mainHeader.php");
       include("./server/config.php");
+      include("inc/modal.php");
       if(!empty($_SESSION["u_id"])){   
         include("inc/membersContent.php");
 
@@ -22,16 +23,18 @@
                 </tr>';
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
-                echo '<tr>
-                            <td>'.$row['id'].'</td>
-                            <th>'.$row['fname'].'</th>
-                            <th>'.$row['lname'].'</th>
-                            <th>'.$row['p_number'].'</th>
-                            <th>'.$row['bank_name'].'</th>
-                            <th>'.$row['account_holder'].'</th>
-                            <th>'.$row['account_number'].'</th>
-                            <th>'.$row['status'].'</th>
-                            <th><input type="submit" class="btn btn-success" value="View"/></th>
+                echo    '<tr>
+                            <form action="" method="post">
+                                <td><input type="text" name="id" hidden values="'.$row['id'].            '"/>'.$row['id'].       '</td>
+                                <td><input type="text" name="fname" hidden values="'.$row['fname'].         '"/>'.$row['fname'].     '</td>
+                                <td><input type="text" name="lname" hidden values="'.$row['lname'].         '"/>'.$row['lname'].       '</td>
+                                <td><input type="text" name="p_number" hidden values="'.$row['p_number'].      '"/>'.$row['p_number'].      '</td>
+                                <td><input type="text" name="bank_name" hidden values="'.$row['bank_name'].     '"/>'.$row['bank_name'].     '</td>
+                                <td><input type="text" name="account_holder" hidden values="'.$row['account_holder'].'"/>'.$row['account_holder'].'</td>
+                                <td><input type="text" name="account_number" hidden values="'.$row['account_number'].'"/>'.$row['account_number'].'</td>
+                                <td><input type="text" name="status" hidden values="'.$row['status'].'"/>'.$row['status'].'</td>
+                                <td><input type="button" data-toggle="modal" data-target="#myModal" name="btn-view" id="btn-view" class="btn btn-success" value="View"/></td>
+                            </form>
                         </tr>';
                     }
                  echo '</table>';

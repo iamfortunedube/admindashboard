@@ -5,9 +5,11 @@
       if(!empty($_SESSION["u_id"])){   
         include("inc/donationsContent.php");
 
-        $sql = "Select * From donation";
+        $sql = "Select * from donation";
         $result= mysqli_query($conn,$sql);
 
+        $stmnt = "Select * from claims C,users S where C.cellClaim = S.p_number";
+        $results = mysqli_query($conn,$stmnt);
         echo '<table class="table table-condensed" style="margin-top: -5px;">
                 <thead>
                   <tr style="background: black; color: white;">
@@ -15,7 +17,7 @@
                       <th>Cell No.</th>
                       <th>Amount</th>
                       <th>Count Down</th>
-                      <th>Status</th>
+                      <th>Receiver</th>
                       <th>Action</th>
                   </tr>
                 </thead>    
@@ -28,7 +30,15 @@
                         <td>'.$row['cellDonator'].'</td>
                         <td>'.$row['amount'].'</td>
                         <td>'.$row['donDate'].'</td>
-                        <td>'.$row['status'].'</td>';
+                        <td> <select class="form-control">';
+                        if(mysqli_num_rows($results) > 0){
+                            while($rows = mysqli_fetch_assoc($results)){
+                                
+                            echo '
+                            <option>'.$rows['fname'].' R'.$rows['amount'].'</option>';
+                            }
+                        }echo '
+                        </select></td>';
                         if($row['status']=="0"){
                          echo '<td><input type="submit" class="btn btn-success" value="Allocate"/></td>';
                         }

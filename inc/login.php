@@ -4,7 +4,7 @@
 
 </div>
 <div class="fomrLogin">
-    <div class="welcomeTitle">
+    <div class="welcomeTitle mainTitle">
         <h3 style='font-family: "Comic Sans MS", cursive, sans-serif; text-align: center'>Administration Login</h3>
     </div>
     <?php include("server/loginScript.php");?>

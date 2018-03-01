@@ -1,4 +1,4 @@
-<div class="welcomeTitle">
+<div class="welcomeTitle mainTitle">
     <h3 style='font-family: "Comic Sans MS", cursive, sans-serif; text-align: center'>Dashboard</h3>
 </div>
 <div class="wrapper">

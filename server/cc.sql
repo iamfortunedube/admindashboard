@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2018 at 05:01 PM
+-- Generation Time: Feb 28, 2018 at 06:29 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -25,10 +25,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bank`
+-- Table structure for table `allocation`
 --
 
-CREATE TABLE `bank` (
+CREATE TABLE `allocation` (
+  `id` int(11) NOT NULL,
+  `cellDonator` varchar(13) NOT NULL,
+  `cellReciever` varchar(13) NOT NULL,
+  `don_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bankss`
+--
+
+CREATE TABLE `bankss` (
   `id` int(11) NOT NULL,
   `bank_name` varchar(100) NOT NULL,
   `universal_code` varchar(11) NOT NULL,
@@ -36,10 +50,10 @@ CREATE TABLE `bank` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bank`
+-- Dumping data for table `bankss`
 --
 
-INSERT INTO `bank` (`id`, `bank_name`, `universal_code`, `key`) VALUES
+INSERT INTO `bankss` (`id`, `bank_name`, `universal_code`, `key`) VALUES
 (1, 'ABSA BANK', '632005', 'ABS'),
 (2, 'BANK OF ATHENS', '410506', 'BOA'),
 (3, 'ABSA BANK', '632005', 'ABS'),
@@ -51,6 +65,21 @@ INSERT INTO `bank` (`id`, `bank_name`, `universal_code`, `key`) VALUES
 (9, 'NEDBANK', '198765', 'NED'),
 (10, 'SA POST BANK (POST OFFICE)', '460005', 'SAP'),
 (11, 'STANDARD BANK', '051001', 'STA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `claims`
+--
+
+CREATE TABLE `claims` (
+  `id` int(11) NOT NULL,
+  `cellClaim` varchar(100) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `donDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `expDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `states` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,7 +101,7 @@ CREATE TABLE `donation` (
 --
 
 INSERT INTO `donation` (`id`, `cellDonator`, `amount`, `donDate`, `expDate`, `status`) VALUES
-(9, '12345', 500, '2018-02-27 14:59:13', '2018-02-28 02:02:13', 0);
+(10, '12345', 1050, '2018-02-27 16:48:31', '2018-02-28 04:02:31', 0);
 
 -- --------------------------------------------------------
 
@@ -121,6 +150,7 @@ CREATE TABLE `users` (
   `status` int(11) NOT NULL,
   `bank_name` varchar(100) NOT NULL,
   `universal_code` int(11) NOT NULL,
+  `bank_branch` int(11) NOT NULL,
   `account_holder` varchar(100) NOT NULL,
   `account_number` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -129,18 +159,23 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `p_number`, `password`, `ref_code`, `vCode`, `status`, `bank_name`, `universal_code`, `account_holder`, `account_number`) VALUES
-(1, 'khaye', 'kunene', '12345', 'admin', 'admin', '234567', 1, 'CAPITEC BANK', 470010, 'Khayelihle', '1425364738'),
-(4, 'a', 'a', 'a', 'c', 'a', '190506', 0, '', 0, '', '');
+INSERT INTO `users` (`id`, `fname`, `lname`, `p_number`, `password`, `ref_code`, `vCode`, `status`, `bank_name`, `universal_code`, `bank_branch`, `account_holder`, `account_number`) VALUES
+(1, 'khaye', 'kunene', '12345', 'admin', 'admin', '234567', 1, 'CAPITEC BANK', 470010, 0, 'Khayelihle', '1425364738');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `bank`
+-- Indexes for table `bankss`
 --
-ALTER TABLE `bank`
+ALTER TABLE `bankss`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `claims`
+--
+ALTER TABLE `claims`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,15 +210,20 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `bank`
+-- AUTO_INCREMENT for table `bankss`
 --
-ALTER TABLE `bank`
+ALTER TABLE `bankss`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `claims`
+--
+ALTER TABLE `claims`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `support`
 --
@@ -198,7 +238,7 @@ ALTER TABLE `transactionhistory`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

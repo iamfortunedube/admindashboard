@@ -1,22 +1,25 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.2
--- https://www.phpmyadmin.net/
+-- version 3.3.9
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
+<<<<<<< HEAD
 -- Generation Time: Feb 28, 2018 at 06:29 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
+=======
+-- Generation Time: Feb 27, 2018 at 06:14 AM
+-- Server version: 5.1.53
+-- PHP Version: 5.3.4
+>>>>>>> 8f940d4ad0d4a12093ea3e6f6206cb9c38bb42c2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `cc`
@@ -28,6 +31,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `allocation`
 --
 
+<<<<<<< HEAD
 CREATE TABLE `allocation` (
   `id` int(11) NOT NULL,
   `cellDonator` varchar(13) NOT NULL,
@@ -44,10 +48,15 @@ CREATE TABLE `allocation` (
 
 CREATE TABLE `bankss` (
   `id` int(11) NOT NULL,
+=======
+CREATE TABLE IF NOT EXISTS `bank` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+>>>>>>> 8f940d4ad0d4a12093ea3e6f6206cb9c38bb42c2
   `bank_name` varchar(100) NOT NULL,
   `universal_code` varchar(11) NOT NULL,
-  `key` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `key` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `bankss`
@@ -87,21 +96,26 @@ CREATE TABLE `claims` (
 -- Table structure for table `donation`
 --
 
-CREATE TABLE `donation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `donation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cellDonator` varchar(13) NOT NULL COMMENT 'cell number of donator',
-  `amount` int(65) NOT NULL,
-  `donDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `expDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `status` int(2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `amount` decimal(65,0) NOT NULL,
+  `donDate` date NOT NULL,
+  `expDate` date NOT NULL,
+  `status` int(2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `donation`
 --
 
+<<<<<<< HEAD
 INSERT INTO `donation` (`id`, `cellDonator`, `amount`, `donDate`, `expDate`, `status`) VALUES
 (10, '12345', 1050, '2018-02-27 16:48:31', '2018-02-28 04:02:31', 0);
+=======
+>>>>>>> 8f940d4ad0d4a12093ea3e6f6206cb9c38bb42c2
 
 -- --------------------------------------------------------
 
@@ -109,13 +123,20 @@ INSERT INTO `donation` (`id`, `cellDonator`, `amount`, `donDate`, `expDate`, `st
 -- Table structure for table `support`
 --
 
-CREATE TABLE `support` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `support` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `p_number` varchar(13) NOT NULL,
   `Surname` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `Message` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Message` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `support`
+--
+
 
 -- --------------------------------------------------------
 
@@ -123,15 +144,22 @@ CREATE TABLE `support` (
 -- Table structure for table `transactionhistory`
 --
 
-CREATE TABLE `transactionhistory` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transactionhistory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cellDonator` varchar(13) NOT NULL,
   `cellReciever` varchar(13) NOT NULL,
   `amount` decimal(65,0) NOT NULL,
   `donationDate` date NOT NULL,
   `claimeDate` date NOT NULL,
-  `status` varchar(255) NOT NULL COMMENT 'complete or incomplete'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `status` varchar(255) NOT NULL COMMENT 'complete or incomplete',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `transactionhistory`
+--
+
 
 -- --------------------------------------------------------
 
@@ -139,8 +167,8 @@ CREATE TABLE `transactionhistory` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `p_number` varchar(15) NOT NULL,
@@ -152,13 +180,15 @@ CREATE TABLE `users` (
   `universal_code` int(11) NOT NULL,
   `bank_branch` int(11) NOT NULL,
   `account_holder` varchar(100) NOT NULL,
-  `account_number` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `account_number` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
 --
 
+<<<<<<< HEAD
 INSERT INTO `users` (`id`, `fname`, `lname`, `p_number`, `password`, `ref_code`, `vCode`, `status`, `bank_name`, `universal_code`, `bank_branch`, `account_holder`, `account_number`) VALUES
 (1, 'khaye', 'kunene', '12345', 'admin', 'admin', '234567', 1, 'CAPITEC BANK', 470010, 0, 'Khayelihle', '1425364738');
 
@@ -243,3 +273,8 @@ ALTER TABLE `users`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+=======
+INSERT INTO `users` (`id`, `fname`, `lname`, `p_number`, `password`, `ref_code`, `vCode`, `status`, `bank_name`, `universal_code`, `account_holder`, `account_number`) VALUES
+(1, 'khaye', 'kunene', '12345', '12345', '12345', '234567', 1, 'CAPITEC BANK', 470010, 'Khayelihle', '1425364738'),
+(4, 'a', 'a', 'a', 'c', 'a', '190506', 0, '', 0, '', '');
+>>>>>>> 8f940d4ad0d4a12093ea3e6f6206cb9c38bb42c2

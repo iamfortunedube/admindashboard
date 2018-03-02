@@ -25,7 +25,7 @@
                 <thead>
                   <tr style="background: black; color: white;">
                       <th>#</th>
-                      <th>Receiver</th>
+                      <th>Cell no</th>
                       <th>Amount</th>
                       <th>Count Down</th>
                       <th>Donor</th>
@@ -61,7 +61,6 @@
                 ';
               }
             }
-
       }else{
           die('<center><div style="text-align:center;font-size:70pt;color:gold;font-weight:bolder;"> 404</div> <p>Oppps, We are havnig some technical problems. Please try again <a href="index.php">Home</a>.</p><img width="300" src="assets/logoCC.png" alt="logo"></center>');
       } 

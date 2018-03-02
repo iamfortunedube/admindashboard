@@ -2,13 +2,44 @@
 <?php 
       include("inc/mainHeader.php");
       include("./server/config.php");
+      include("server/allocation.php");
       if(!empty($_SESSION["u_id"])){   
         include("inc/donationsContent.php");
+        if(@$_POST['submit']=="Allocate"){
+            $donator = $_POST['cell_donator'];
+            $claimer = $_POST['claimer_id'];
+            $claimed_amount = $_POST['claimer_amount'];
+            $donated_amount = $_POST['amount'];
+            $remaining_don;
+            $status = 0;
 
+            $insert_query = "Insert into allocation values('',\"$donator\",\"$claimer\",\"$status\")";
+            $res = mysqli_query($conn,$insert_query);
+            if($res){
+                echo '<script>alert("Allocation successful"+" '.@$claimed_amount.'");</script>';
+                $remaining_don = $donated_amount - $claimed_amount;
+                
+                
+                $update_donation = "Update donation SET status = 1 WHERE cellDonator = '".@$donator."'";
+                $ress = mysqli_query($conn,$update_donation);
+                $update_claims = "Update claims SET states = 2 WHERE cellClaim = '".@$claimer."'";
+                $resss = mysqli_query($conn,$update_claims);
+                if($ress){
+                    echo '<script>alert("update successful");</script>';
+                }
+                if($resss){
+                    echo '<script>alert("update successful");</script>';
+                }
+            }
+            else{
+                echo "<script>alert('Wasn't successful');</script>";
+            }
+            
+        }
         $sql = "Select * from donation";
         $result= mysqli_query($conn,$sql);
 
-        $stmnt = "Select * from claims C,users S where C.cellClaim = S.p_number";
+        $stmnt = "Select * from claims C,users S where C.cellClaim = S.p_number AND C.states =0";
         $results = mysqli_query($conn,$stmnt);
         echo '<table class="table table-condensed" style="margin-top: -5px;">
                 <thead>
@@ -19,6 +50,7 @@
                       <th>Count Down</th>
                       <th>Receiver</th>
                       <th>Action</th>
+                      <th>Remaining</th>
                   </tr>
                 </thead>    
             ';
@@ -26,26 +58,36 @@
               while($row = mysqli_fetch_assoc($result)){
                 echo '
                     <tbody>
-                        <td>'.$row['id'].'</td>
-                        <td>'.$row['cellDonator'].'</td>
-                        <td>'.$row['amount'].'</td>
-                        <td>'.$row['donDate'].'</td>
+                    <form action="" method="post">
+                        <td><input type="text" name="don_id" value="'.$row['id'].'" hidden/>'.$row['id'].'</td>
+                        <td><input type="text" name="cell_donator" value="'.$row['cellDonator'].'" hidden/>'.$row['cellDonator'].'</td>
+                        <td><input type="text" name="amount" value="'.$row['amount'].'" hidden/>'.$row['amount'].'</td>
+                        <td><input type="text" name="don_date" value="'.$row['donDate'].'" hidden/>'.$row['donDate'].'</td>
+                        
                         <td> <select class="form-control">';
                         if(mysqli_num_rows($results) > 0){
                             while($rows = mysqli_fetch_assoc($results)){
-                                
+                                $claimer_id = $rows['cellClaim'];
+                                $fnameD = $rows['fname'];
+                                $amountClaim = $rows['amount'];
                             echo '
-                            <option>'.$rows['fname'].' R'.$rows['amount'].'</option>';
+                                <option>'.$rows['fname'].' R'.$rows['amount'].'</option>
+                                <input type="text" name="claimer_id" value="'.@$claimer_id.'" hidden/>
+                        <input type="hidden" name="claimer_name" value="'.@$fnameC.'" hidden />
+                        <input type="hidden" name="claimer_amount" value="'.@$amountClaim.'" hidden />';
                             }
                         }echo '
                         </select></td>';
                         if($row['status']=="0"){
-                         echo '<td><input type="submit" class="btn btn-success" value="Allocate"/></td>';
+                         echo '<td><input type="submit" name="submit" class="btn btn-success" value="Allocate"/></td>';
                         }
                         else{
                         echo  '<td>Allocated</td>';
                         }
-                   echo '</tbody>';
+                   echo '
+                   <td><input type="text" name="remaining_don" value="'.@$remaining_don.'" hidden/>'.@$remaining_don.'</td>
+                   </form>
+                   </tbody>';
               }
             }
             echo '</table>';

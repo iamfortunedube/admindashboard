@@ -9,7 +9,7 @@ echo '
                     <img src="assets/avatar.png" width="70" height="70" alt="image" />
                 </div>
                 <div class="userWelcome">
-                    <p class="welcomeM">Welcome <b>'.@$_SESSION['name'].'</b></p>
+                    <p class="welcome">Welcome <b>'.@$_SESSION['name'].'</b></p>
                     <p>Username: '.@$_SESSION['username'].'</p>
                 </div>
                 <li><a id="dashboard" href="dashboard.php"><i class="fas fa-eye"></i> Overview</a></li>

@@ -8,7 +8,7 @@
         @$_SESSION['u_lname'] = $_POST['lname'];
         @$_SESSION['u_cellNo'] = $_POST['p_number'];
         @$_SESSION['u_bankName'] = $_POST['bank_name'];
-        @$_SESSION['uni_code'] = $_POST['uni_code'];
+        @$_SESSION['u_uniCode'] = $_POST['uni_code'];
         @$_SESSION['u_accHolder'] = $_POST['account_holder'];
         @$_SESSION['u_accNo'] = $_POST['account_number'];
         @$_SESSION['u_status'] = $_POST['status'];

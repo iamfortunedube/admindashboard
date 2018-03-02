@@ -19,8 +19,7 @@
                 echo '<script>alert("Allocation successful"+" '.@$claimed_amount.'");</script>';
                 $remaining_don = $donated_amount - $claimed_amount;
                 
-                
-                $update_donation = "Update donation SET status = 1 WHERE cellDonator = '".@$donator."'";
+                $update_donation = "Update donation SET status = 1,remaining_don = '".$remaining_don."'  WHERE cellDonator = '".@$donator."'";
                 $ress = mysqli_query($conn,$update_donation);
                 $update_claims = "Update claims SET states = 2 WHERE cellClaim = '".@$claimer."'";
                 $resss = mysqli_query($conn,$update_claims);

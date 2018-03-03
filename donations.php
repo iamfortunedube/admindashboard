@@ -36,11 +36,9 @@
             }
             
         }
-        $sql = "Select * from donation";
+        $sql = "Select * from donation WHERE remaining_don > 0";
         $result= mysqli_query($conn,$sql);
 
-        $stmnt = "Select * from claims C,users S where C.cellClaim = S.p_number AND C.states =0";
-        $results = mysqli_query($conn,$stmnt);
         echo '<table class="table table-condensed" style="margin-top: -5px;">
                 <thead>
                   <tr style="background: black; color: white;">
@@ -57,7 +55,7 @@
             if(mysqli_num_rows($result) > 0){
               while($row = mysqli_fetch_assoc($result)){
                 echo '
-                    <tbody>
+                    <tbody><tr>
                     <form action="" method="post">
                         <td><input type="text" name="don_id" value="'.$row['id'].'" hidden/>'.$row['id'].'</td>
                         <td><input type="text" name="cell_donator" value="'.$row['cellDonator'].'" hidden/>'.$row['cellDonator'].'</td>
@@ -65,6 +63,8 @@
                         <td><input type="text" name="don_date" value="'.$row['donDate'].'" hidden/>'.$row['donDate'].'</td>
                         
                         <td> <select class="form-control">';
+                        $stmnt = "Select * from claims C,users S where C.cellClaim = S.p_number AND C.states =0";
+                        $results = mysqli_query($conn,$stmnt);
                         if(mysqli_num_rows($results) > 0){
                             while($rows = mysqli_fetch_assoc($results)){
                                 $claimer_id = $rows['cellClaim'];
@@ -86,7 +86,7 @@
                         }
                    echo '
                    <td><input type="text" name="remaining_don" value="'.@$remaining_don.'" hidden/>'.$row['remaining_don'].'</td>
-                   </form>
+                   </form><tr>
                    </tbody>';
                 }
             }

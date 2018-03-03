@@ -39,12 +39,12 @@
                     <tbody>
 
                       <form action="" method="post">
-                          <td><input type="text" name="a" value="'.$row['id'].'" hidden/>'.$row['id'].'</td>
-                          <td><input type="text" name="b" value="'.$row['cellClaim'].'" hidden/>'.$row['cellClaim'].'</td>
-                          <td><input type="text" name="c" value="'.$row['amount'].'" hidden/>'.$row['amount'].'</td>
-                          <td><input type="text" name="d" value="'.$row['donDate'].'" hidden/>'.$row['donDate'].'</td>
-                          <td><input type="hidden" name="aa" value="'.@$fnameD.'" hidden />
-                          <input type="hidden" name="ab" value="'.@$amountDon.'" hidden />
+                          <td><input type="text" name="claim_id" value="'.$row['id'].'" hidden/>'.$row['id'].'</td>
+                          <td><input type="text" name="claimer_id" value="'.$row['cellClaim'].'" hidden/>'.$row['cellClaim'].'</td>
+                          <td><input type="text" name="claimed_id" value="'.$row['amount'].'" hidden/>'.$row['amount'].'</td>
+                          <td><input type="text" name="claim_date" value="'.$row['donDate'].'" hidden/>'.$row['donDate'].'</td>
+                          <td><input type="hidden" name="don_name" value="'.@$fnameD.'" hidden />
+                          <input type="hidden" name="donated_amount" value="'.@$amountDon.'" hidden />
                           <select class="form-control">';
                           if(mysqli_num_rows($results) > 0){
                               while($rows = mysqli_fetch_assoc($results)){

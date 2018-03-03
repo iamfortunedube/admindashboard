@@ -19,8 +19,9 @@
                 echo '<script>alert("Allocation successful"+" '.@$claimed_amount.'");</script>';
                 $remaining_don = $donated_amount - $claimed_amount;
                 
-                $update_donation = "Update donation SET status = 1,remaining_don = '".$remaining_don."'  WHERE cellDonator = '".@$donator."'";
+                $update_donation = "Update donation SET remaining_don = '".$remaining_don."'  WHERE cellDonator = '".@$donator."'";
                 $ress = mysqli_query($conn,$update_donation);
+
                 $update_claims = "Update claims SET states = 2 WHERE cellClaim = '".@$claimer."'";
                 $resss = mysqli_query($conn,$update_claims);
                 if($ress){
@@ -77,17 +78,17 @@
                             }
                         }echo '
                         </select></td>';
-                        if($row['status']=="0"){
+                        if(!$row['remaining_don']=="0"){
                          echo '<td><input type="submit" name="submit" class="btn btn-success" value="Allocate"/></td>';
                         }
                         else{
                         echo  '<td>Allocated</td>';
                         }
                    echo '
-                   <td><input type="text" name="remaining_don" value="'.@$remaining_don.'" hidden/>'.@$remaining_don.'</td>
+                   <td><input type="text" name="remaining_don" value="'.@$remaining_don.'" hidden/>'.$row['remaining_don'].'</td>
                    </form>
                    </tbody>';
-              }
+                }
             }
             echo '</table>';
         

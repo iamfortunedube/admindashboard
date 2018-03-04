@@ -31,7 +31,7 @@
             $insert_query = "Insert into allocation values('',\"$donator\",\"$claimer_cell\",\"$status\")";
             $res = mysqli_query($conn,$insert_query);
             if($res){
-                echo '<script>alert("Allocation successful"+" '.@$claimed_amount.'");</script>';
+                echo '<script>alert("Allocation successful");</script>';
                
                  $remaing_don_amount = (int)$remaining_amount; 
                  $remaining_claim_amount = (int)$claimed_amount;
@@ -44,11 +44,89 @@
 
                         $update_claims = "Update claims SET remaining_claim = 0,states = 2 WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
+
+
+                        /*-------------------------SMS------------------
+                            $sqlDoon = "select * from users where p_number = '".$donator."'";
+                            $donResults = mysqli_query($conn,$sqlDoon);
+                            $getDonDetails = mysqli_fetch_assoc($donResults);
+                        /*-------------------------SMS ends------------------*/
+
+                        /*-------------------------SMS------------------
+                            $sqlClaim = "select * from users where p_number = '".$claimer_cell."'";
+                            $claimResults = mysqli_query($conn,$sqlClaim);
+                            $getClaimDetails = mysqli_fetch_assoc($claimResults);
+                        /*-------------------------SMS ends------------------*/
+
                         if($ress){
                             echo '<script>alert("update successful");</script>';
+
+                            /*-------------------------SMS------------------
+
+                                
+                                $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+          
+                                $userp = "user=";
+                            
+                                $passwordp = "&password=";
+                            
+                                $messagep = "&message=";
+                            
+                                $numbersp = "&Numbers=";
+                            
+                                $username = "qinisozwane11@gmail.com";
+                                $password = "Mangethe91";
+                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".."\n-----------------------------\nFrom Commercial Club.";
+                                $numbers = $donator;
+                            
+                                $encmessage = urlencode(utf8_encode($message));
+                            
+                                $all = $url.$userp.$username.$passwordp.$password.$messagep.$encmessage.$numbersp.$numbers;
+                            
+                                $fp = fopen($all, 'r');
+                                while(!feof($fp)){
+                                $line = fgets($fp, 4000);
+                                echo "<br>";
+                                echo "Responce";
+                                echo "<br>";
+                                print($line);
+                                echo "<br>";
+                                }
+                                fclose($fp);
+                                 /*-------------------------SMS ends------------------*/
                         }
                         if($resss){
-                            echo '<script>alert("update successful");</script>';
+                          /*-------------------------SMS ends------------------
+                             $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+          
+                                $userp = "user=";
+                            
+                                $passwordp = "&password=";
+                            
+                                $messagep = "&message=";
+                            
+                                $numbersp = "&Numbers=";
+                            
+                                $username = "qinisozwane11@gmail.com";
+                                $password = "Mangethe91";
+                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $numbers = $claimer_cell;
+                            
+                                $encmessage = urlencode(utf8_encode($message));
+                            
+                                $all = $url.$userp.$username.$passwordp.$password.$messagep.$encmessage.$numbersp.$numbers;
+                            
+                                $fp = fopen($all, 'r');
+                                while(!feof($fp)){
+                                $line = fgets($fp, 4000);
+                                echo "<br>";
+                                echo "Responce";
+                                echo "<br>";
+                                print($line);
+                                echo "<br>";
+                                }
+                                fclose($fp);
+                                 /*-------------------------SMS ends------------------*/
                         }
                     }else if($remaing_don_amount < $remaining_claim_amount){
                         $remaining_claim = $remaining_claim_amount - $remaing_don_amount;
@@ -57,11 +135,75 @@
 
                         $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."' WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
-                        if($ress){
+                       if($ress){
                             echo '<script>alert("update successful");</script>';
+
+                            /*-------------------------SMS------------------
+
+                              $sql = "select * from users where p_number = '".."'"
+                               $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+          
+                                $userp = "user=";
+                            
+                                $passwordp = "&password=";
+                            
+                                $messagep = "&message=";
+                            
+                                $numbersp = "&Numbers=";
+                            
+                                $username = "qinisozwane11@gmail.com";
+                                $password = "Mangethe91";
+                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $numbers = $donator;
+                            
+                                $encmessage = urlencode(utf8_encode($message));
+                            
+                                $all = $url.$userp.$username.$passwordp.$password.$messagep.$encmessage.$numbersp.$numbers;
+                            
+                                $fp = fopen($all, 'r');
+                                while(!feof($fp)){
+                                $line = fgets($fp, 4000);
+                                echo "<br>";
+                                echo "Responce";
+                                echo "<br>";
+                                print($line);
+                                echo "<br>";
+                                }
+                                fclose($fp);
+                                 /*-------------------------SMS ends------------------*/
                         }
                         if($resss){
-                            echo '<script>alert("update successful");</script>';
+                          /*-------------------------SMS ends------------------
+                             $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+          
+                                $userp = "user=";
+                            
+                                $passwordp = "&password=";
+                            
+                                $messagep = "&message=";
+                            
+                                $numbersp = "&Numbers=";
+                            
+                                $username = "qinisozwane11@gmail.com";
+                                $password = "Mangethe91";
+                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $numbers = $claimer_cell;
+                            
+                                $encmessage = urlencode(utf8_encode($message));
+                            
+                                $all = $url.$userp.$username.$passwordp.$password.$messagep.$encmessage.$numbersp.$numbers;
+                            
+                                $fp = fopen($all, 'r');
+                                while(!feof($fp)){
+                                $line = fgets($fp, 4000);
+                                echo "<br>";
+                                echo "Responce";
+                                echo "<br>";
+                                print($line);
+                                echo "<br>";
+                                }
+                                fclose($fp);
+                                 /*-------------------------SMS ends------------------*/
                         }
                              
                     }else{
@@ -73,9 +215,73 @@
                         $resss = mysqli_query($conn,$update_claims);
                         if($ress){
                             echo '<script>alert("update successful");</script>';
+
+                            /*-------------------------SMS------------------
+
+                              $sql = "select * from users where p_number = '".."'"
+                               $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+          
+                                $userp = "user=";
+                            
+                                $passwordp = "&password=";
+                            
+                                $messagep = "&message=";
+                            
+                                $numbersp = "&Numbers=";
+                            
+                                $username = "qinisozwane11@gmail.com";
+                                $password = "Mangethe91";
+                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $numbers = $donator;
+                            
+                                $encmessage = urlencode(utf8_encode($message));
+                            
+                                $all = $url.$userp.$username.$passwordp.$password.$messagep.$encmessage.$numbersp.$numbers;
+                            
+                                $fp = fopen($all, 'r');
+                                while(!feof($fp)){
+                                $line = fgets($fp, 4000);
+                                echo "<br>";
+                                echo "Responce";
+                                echo "<br>";
+                                print($line);
+                                echo "<br>";
+                                }
+                                fclose($fp);
+                                 /*-------------------------SMS ends------------------*/
                         }
                         if($resss){
-                            echo '<script>alert("update successful");</script>';
+                          /*-------------------------SMS ends------------------
+                             $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+          
+                                $userp = "user=";
+                            
+                                $passwordp = "&password=";
+                            
+                                $messagep = "&message=";
+                            
+                                $numbersp = "&Numbers=";
+                            
+                                $username = "qinisozwane11@gmail.com";
+                                $password = "Mangethe91";
+                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $numbers = $claimer_cell;
+                            
+                                $encmessage = urlencode(utf8_encode($message));
+                            
+                                $all = $url.$userp.$username.$passwordp.$password.$messagep.$encmessage.$numbersp.$numbers;
+                            
+                                $fp = fopen($all, 'r');
+                                while(!feof($fp)){
+                                $line = fgets($fp, 4000);
+                                echo "<br>";
+                                echo "Responce";
+                                echo "<br>";
+                                print($line);
+                                echo "<br>";
+                                }
+                                fclose($fp);
+                                 /*-------------------------SMS ends------------------*/
                         }
                     }
             }

@@ -3,7 +3,7 @@
     if($_SERVER["REQUEST_METHOD"]=="POST")
     {
 		
-        if(isset($_POST["submit"]))
+        if(@$_POST["submit"] == "Sign in")
         {
 			  if(empty($_POST["username"])){
 
@@ -25,7 +25,7 @@
 					@$username=$_POST["username"];
 					@$password=$_POST["password"];
 		
-					$sql="SELECT * FROM `admin` WHERE username = '$username' && password = '$password'";
+					$sql = "SELECT * FROM `admin` WHERE username = '$username' && password = '$password'";
 		
                     $result=$conn->query($sql);
                     

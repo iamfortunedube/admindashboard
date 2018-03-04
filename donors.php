@@ -54,6 +54,6 @@
 <script>
     $(document).ready(function(){
       $('.sidebar-menu ul li a').removeClass('active');
-      $('.sidebar-menu ul li #claims').addClass('active');
+      $('.sidebar-menu ul li #donors').addClass('active');
     });
 </script>

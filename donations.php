@@ -27,6 +27,8 @@
                 }
             }
 
+
+            $update_claim = "UPDATE claims SET ";
            
             $insert_query = "Insert into allocation values('',\"$donator\",\"$claimer_cell\",\"$status\")";
             $res = mysqli_query($conn,$insert_query);
@@ -289,6 +291,9 @@
                 echo "<script>alert('Wasn't successful');</script>";
             }
             
+            $newDate=Date('Y-m-d', strtotime("+10 days")) ." ". date('H:i:s');
+            $curtime = $countD = date('Y-m-d H:i:s');
+            echo '<script>alert($curtime);</script>';
         }
         $sql = "Select * from donation WHERE remaining_don > 0";
         $result= mysqli_query($conn,$sql);

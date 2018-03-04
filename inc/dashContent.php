@@ -1,3 +1,10 @@
+<?php 
+    include("./server/config.php");
+
+    $select_active_users = "SELECT * FROM `users` where status = 1";
+    $res = mysqli_query($conn, $select_active_users);
+    $active_users = mysqli_num_rows($res);
+?>
 <div class="welcomeTitle mainTitle">
     <h3 style='font-family: "Comic Sans MS", cursive, sans-serif; text-align: center'>Dashboard</h3>
 </div>
@@ -16,7 +23,7 @@
             <div class="card bg-gradient-warning text-white">
                 <div class="card-body">
                     <h4 class="font-weight-normal mb-3">Active Users</h4>
-                    <h2 class="font-weight-normal mb-5">3 542</h2>
+                    <h2 class="font-weight-normal mb-5"><?php echo ''.$active_users.'';?></h2>
                     <p class="card-text">Incresed by 40%</p>
                 </div>
             </div>

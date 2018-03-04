@@ -19,7 +19,7 @@
     $result= mysqli_query($conn,$sql);
     echo '<table class="table table-condensed" style="margin-top: -5px;" id="user-table">
             
-        <tr style="background: black; color: white;">
+        <tr style="background: black; color: white; border-color: rgb(218,165,32); border-style: solid; border-width: 2px;">
             <th>#</th>
             <th>Name</th>
             <th>Surname</th>

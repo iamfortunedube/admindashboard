@@ -1,20 +1,10 @@
-<?php 
+<?php
       include("inc/mainHeader.php");
       include("./server/config.php");
-      if(!empty($_SESSION["u_id"])){   
-        include("inc/claimsContent.php");
+      if(!empty($_SESSION["u_id"])){
+        include("inc/donorsContent.php");
 
-        if(@$_POST['submit'] == "Allocate"){
-            $a = $_POST['a'];
-            $b = $_POST['b'];
-            $c = $_POST['c'];
-            $d = $_POST['d'];
-            $aa = $_POST['aa'];
-            $ab = $_POST['ab'];
-
-            echo "<script>alert('".$a." ".$b." ".$c." ".$d." ".$aa." ".$ab."');</script>";
-        }
-        $stmnt = "Select * From claims C, users S WHERE C.cellClaim = S.p_number";
+        $stmnt = "Select * From donation D, users S WHERE D.cellDonator = S.p_number";
         $result = mysqli_query($conn,$stmnt);
 
         // $sql = "Select * from donation D,users S where D.cellDonator = S.p_number";
@@ -40,9 +30,9 @@
                       <form action="" method="post">
                           <td><input type="text" name="claim_id" value="'.$row['id'].'" hidden/>'.$row['id'].'</td>
                           <td><input type="text" name="claimer_name" value="'.$row['fname'].'" hidden/>'.$row['fname'].' '.$row['lname'].'</td>
-                          <td><input type="text" name="claimer_id" value="'.$row['cellClaim'].'" hidden/>'.$row['cellClaim'].'</td>
-                          <td><input type="text" name="claimed_amount" value="'.$row['remaining_claim'].'" hidden/>'.$row['remaining_claim'].'</td>';
-                            if($row['remaining_claim']>0){
+                          <td><input type="text" name="claimer_id" value="'.$row['cellDonator'].'" hidden/>'.$row['cellDonator'].'</td>
+                          <td><input type="text" name="claimed_amount" value="'.$row['remaining_don'].'" hidden/>'.$row['remaining_don'].'</td>';
+                            if($row['remaining_don']>0){
                                 $status = "Incomplete";
                                 echo '<td>'.$status.'</td>';
                             }

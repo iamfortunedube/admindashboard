@@ -40,7 +40,7 @@
 						$_SESSION['name'] = $userDetails["name"];
                         
 						$succMessage="SuccessFul";
-						echo "<script>window.location.href = './dashboard.php';alert(".$_SESSION['u_id'].")</script>";
+						echo "<script>window.location.href = './dashboard.php';</script>";
 				    }
 			  }
 

@@ -13,7 +13,7 @@
         @$_SESSION['u_accNo'] = $_POST['account_number'];
         @$_SESSION['u_status'] = $_POST['status'];
 
-        echo "<script>alert(".$_SESSION['u_i'].");window.location.href = 'viewUserProfile.php';</script>";
+        echo "<script>window.location.href = 'viewUserProfile.php';</script>";
     }
     $sql = "Select * From users";
     $result= mysqli_query($conn,$sql);

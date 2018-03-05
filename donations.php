@@ -22,17 +22,20 @@
             $claim_res = mysqli_query($conn,$select_claimer);
             if(mysqli_num_rows($claim_res)>0){
                 while($claim_row = mysqli_fetch_assoc($claim_res)){
-                    $claimed_amount = $claim_row['amount'];
+                    $claimed_amount = $claim_row['remaining_claim'];
                     @$claimer_cell = $claim_row['cellClaim'];
                 }
             }
 
+            $newDate=Date('Y-m-d', strtotime("+10 days")) ." ". date('H:i:s');
+            $curtime = date('Y-m-d H:i:s');
 
             $update_claim = "UPDATE claims SET ";
            
-            $insert_query = "Insert into allocation values('',\"$donator\",\"$claimer_cell\",\"$status\")";
+            $insert_query = "Insert into allocation values('',\"$donator\",\"$claimer_cell\",\"$status\",\"$curtime\")";
             $res = mysqli_query($conn,$insert_query);
             if($res){
+                echo '<span style="background-color: rgb(58, 224, 113);">Allocation was successful</span>';
                 echo '<script>alert("Allocation successful");</script>';
                
                  $remaing_don_amount = (int)$remaining_amount; 
@@ -61,8 +64,6 @@
                         /*-------------------------SMS ends------------------*/
 
                         if($ress){
-                            echo '<script>alert("update successful");</script>';
-
                             /*-------------------------SMS------------------
 
                                 
@@ -138,8 +139,6 @@
                         $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."' WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
                        if($ress){
-                            echo '<script>alert("update successful");</script>';
-
                             /*-------------------------SMS------------------
 
                               $sql = "select * from users where p_number = '".."'"
@@ -216,8 +215,6 @@
                         $update_claims = "Update claims SET remaining_claim = 0,states = 2 WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
                         if($ress){
-                            echo '<script>alert("update successful");</script>';
-
                             /*-------------------------SMS------------------
 
                               $sql = "select * from users where p_number = '".."'"
@@ -292,8 +289,7 @@
             }
             
             $newDate=Date('Y-m-d', strtotime("+10 days")) ." ". date('H:i:s');
-            $curtime = $countD = date('Y-m-d H:i:s');
-            echo '<script>alert($curtime);</script>';
+            $curtime = date('Y-m-d H:i:s');
         }
         $sql = "Select * from donation WHERE remaining_don > 0";
         $result= mysqli_query($conn,$sql);

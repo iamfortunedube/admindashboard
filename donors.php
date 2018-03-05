@@ -12,7 +12,7 @@
 
         echo '<table class="table table-condensed" style="margin-top: -5px;">
                 <thead>
-                  <tr style="background: black; color: white; border-color: rgb(218,165,32); border-style: solid; border-width: 2px;">
+                  <tr style="background: black; color: white; border-color: rgb(218,165,32); border-style: solid; border-width: 3px;">
                       <th>#</th>
                       <th>Name & Surname</th>
                       <th>Cell no</th>

@@ -79,7 +79,7 @@
                             
                                 $username = "qinisozwane11@gmail.com";
                                 $password = "Mangethe91";
-                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".."\n-----------------------------\nFrom Commercial Club.";
+                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".$remaining_claim_amount."\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $donator;
                             
                                 $encmessage = urlencode(utf8_encode($message));

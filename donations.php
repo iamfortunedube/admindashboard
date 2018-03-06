@@ -51,20 +51,20 @@
                         $resss = mysqli_query($conn,$update_claims);
 
 
-                        /*-------------------------SMS------------------
+                        /*-------------------------SMS------------------*/
                             $sqlDoon = "select * from users where p_number = '".$donator."'";
                             $donResults = mysqli_query($conn,$sqlDoon);
                             $getDonDetails = mysqli_fetch_assoc($donResults);
                         /*-------------------------SMS ends------------------*/
 
-                        /*-------------------------SMS------------------
+                        /*-------------------------SMS------------------*/
                             $sqlClaim = "select * from users where p_number = '".$claimer_cell."'";
                             $claimResults = mysqli_query($conn,$sqlClaim);
                             $getClaimDetails = mysqli_fetch_assoc($claimResults);
                         /*-------------------------SMS ends------------------*/
 
                         if($ress){
-                            /*-------------------------SMS------------------
+                            /*-------------------------SMS------------------*/
 
                                 
                                 $url = "https://www.winsms.co.za/api/batchmessage.asp?";
@@ -77,9 +77,16 @@
                             
                                 $numbersp = "&Numbers=";
                             
-                                $username = "qinisozwane11@gmail.com";
-                                $password = "Mangethe91";
-                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".$remaining_claim_amount."\n-----------------------------\nFrom Commercial Club.";
+                                $username = "rovissm@gmail.com";
+                                $password = "Asekhona*03";
+
+                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".$remaining_claim_amount." on the following details\n-----------------------------\n\n
+                                Account Holder: ".$getClaimDetails['account_holder']."\n
+                                Bank Name (Branch code) : ".$getClaimDetails['bank_name']. (" ".$getClaimDetails['branch'].")\n
+                                Account Number : ".$getClaimDetails['account_number']."\n
+                                Cell Number : ".$getClaimDetails['p_number']."\n
+                                Status : Waiting for you to transfer the amount\n\n
+                                NB : Do not forget to login and click send to notify the reciever that you've made the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $donator;
                             
                                 $encmessage = urlencode(utf8_encode($message));
@@ -99,7 +106,7 @@
                                  /*-------------------------SMS ends------------------*/
                         }
                         if($resss){
-                          /*-------------------------SMS ends------------------
+                          /*-------------------------SMS ends------------------*/
                              $url = "https://www.winsms.co.za/api/batchmessage.asp?";
           
                                 $userp = "user=";
@@ -110,9 +117,13 @@
                             
                                 $numbersp = "&Numbers=";
                             
-                                $username = "qinisozwane11@gmail.com";
-                                $password = "Mangethe91";
-                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $username = "rovissm@gmail.com";
+                                $password = "Asekhona*03";
+                                $message = "Hi,".$getClaimDetails['fname']." ".$getClaimDetails['lname']."\n\nYou will recieve ".$remaining_claim_amount." from the following details\n-----------------------------\n\n
+                                Name & Surname : ".$getDonDetails['fname']." ".$getDonDetails['lname']."\n
+                                Cell Number : ".$getDonDetails['p_number']."\n
+                                Status : Waiting for this transfer\n\n
+                                NB : Do not forget to login and click confirm as soon as you recieve the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $claimer_cell;
                             
                                 $encmessage = urlencode(utf8_encode($message));
@@ -139,10 +150,10 @@
                         $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."' WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
                        if($ress){
-                            /*-------------------------SMS------------------
+                           /*-------------------------SMS------------------*/
 
-                              $sql = "select * from users where p_number = '".."'"
-                               $url = "https://www.winsms.co.za/api/batchmessage.asp?";
+                                
+                                $url = "https://www.winsms.co.za/api/batchmessage.asp?";
           
                                 $userp = "user=";
                             
@@ -152,9 +163,16 @@
                             
                                 $numbersp = "&Numbers=";
                             
-                                $username = "qinisozwane11@gmail.com";
-                                $password = "Mangethe91";
-                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $username = "rovissm@gmail.com";
+                                $password = "Asekhona*03";
+
+                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".$remaing_don_amount." on the following details\n-----------------------------\n\n
+                                Account Holder: ".$getClaimDetails['account_holder']."\n
+                                Bank Name (Branch code) : ".$getClaimDetails['bank_name']. (" ".$getClaimDetails['branch'].")\n
+                                Account Number : ".$getClaimDetails['account_number']."\n
+                                Cell Number : ".$getClaimDetails['p_number']."\n
+                                Status : Waiting for you to transfer the amount\n\n
+                                NB : Do not forget to login and click send to notify the reciever that you've made the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $donator;
                             
                                 $encmessage = urlencode(utf8_encode($message));
@@ -174,7 +192,7 @@
                                  /*-------------------------SMS ends------------------*/
                         }
                         if($resss){
-                          /*-------------------------SMS ends------------------
+                          /*-------------------------SMS ends------------------*/
                              $url = "https://www.winsms.co.za/api/batchmessage.asp?";
           
                                 $userp = "user=";
@@ -185,9 +203,13 @@
                             
                                 $numbersp = "&Numbers=";
                             
-                                $username = "qinisozwane11@gmail.com";
-                                $password = "Mangethe91";
-                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $username = "rovissm@gmail.com";
+                                $password = "Asekhona*03";
+                                $message = "Hi,".$getClaimDetails['fname']." ".$getClaimDetails['lname']."\n\nYou will recieve ".$remaining_claim_amount." from the following details\n-----------------------------\n\n
+                                Name & Surname : ".$getDonDetails['fname']." ".$getDonDetails['lname']."\n
+                                Cell Number : ".$getDonDetails['p_number']."\n
+                                Status : Waiting for this transfer\n\n
+                                NB : Do not forget to login and click confirm as soon as you recieve the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $claimer_cell;
                             
                                 $encmessage = urlencode(utf8_encode($message));
@@ -215,7 +237,7 @@
                         $update_claims = "Update claims SET remaining_claim = 0,states = 2 WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
                         if($ress){
-                            /*-------------------------SMS------------------
+                            /*-------------------------SMS------------------*/
 
                               $sql = "select * from users where p_number = '".."'"
                                $url = "https://www.winsms.co.za/api/batchmessage.asp?";
@@ -228,9 +250,15 @@
                             
                                 $numbersp = "&Numbers=";
                             
-                                $username = "qinisozwane11@gmail.com";
-                                $password = "Mangethe91";
-                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $username = "rovissm@gmail.com";
+                                $password = "Asekhona*03";
+                                $message = "Hi,".$getDonDetails['fname']." ".$getDonDetails['lname']."\n\nKindly pay ".$remaing_don_amount." on the following details\n-----------------------------\n\n
+                                Account Holder: ".$getClaimDetails['account_holder']."\n
+                                Bank Name (Branch code) : ".$getClaimDetails['bank_name']. (" ".$getClaimDetails['branch'].")\n
+                                Account Number : ".$getClaimDetails['account_number']."\n
+                                Cell Number : ".$getClaimDetails['p_number']."\n
+                                Status : Waiting for you to transfer the amount\n\n
+                                NB : Do not forget to login and click send to notify the reciever that you've made the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $donator;
                             
                                 $encmessage = urlencode(utf8_encode($message));
@@ -250,7 +278,7 @@
                                  /*-------------------------SMS ends------------------*/
                         }
                         if($resss){
-                          /*-------------------------SMS ends------------------
+                          /*-------------------------SMS ends------------------*/
                              $url = "https://www.winsms.co.za/api/batchmessage.asp?";
           
                                 $userp = "user=";
@@ -261,9 +289,14 @@
                             
                                 $numbersp = "&Numbers=";
                             
-                                $username = "qinisozwane11@gmail.com";
-                                $password = "Mangethe91";
-                                $message = "Hi,"\n-----------------------------\nFrom Commercial Club.";
+                                $username = "rovissm@gmail.com";
+                                $password = "Asekhona*03";
+
+                                $message = "Hi,".$getClaimDetails['fname']." ".$getClaimDetails['lname']."\n\nYou will recieve ".$remaining_claim_amount." from the following details\n-----------------------------\n\n
+                                Name & Surname : ".$getDonDetails['fname']." ".$getDonDetails['lname']."\n
+                                Cell Number : ".$getDonDetails['p_number']."\n
+                                Status : Waiting for this transfer\n\n
+                                NB : Do not forget to login and click confirm as soon as you recieve the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $claimer_cell;
                             
                                 $encmessage = urlencode(utf8_encode($message));

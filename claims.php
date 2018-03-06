@@ -26,7 +26,8 @@
                       <th>#</th>
                       <th>Name & Surname</th>
                       <th>Cell no</th>
-                      <th>Amount</th>
+                      <th>Claimed Amount</th>
+                      <th>Remaining Claim</th>
                       <th>Status</th>
                       <th>Count Down</th>
                   </tr>
@@ -40,7 +41,7 @@
                       <form action="" method="post">
                           <td><input type="text" name="claim_id" value="'.$row['id'].'" hidden/>'.$row['id'].'</td>
                           <td><input type="text" name="claimer_name" value="'.$row['fname'].'" hidden/>'.$row['fname'].' '.$row['lname'].'</td>
-                          <td><input type="text" name="claimer_id" value="'.$row['cellClaim'].'" hidden/>'.$row['cellClaim'].'</td>
+                          <td><input type="text" name="claimer_id" value="'.$row['cellClaim'].'" hidden/>'.$row['cellClaim'].'</td><td><input type="text" name="amount" value="'.$row['amount'].'" hidden/>'.$row['amount'].'</td>
                           <td><input type="text" name="claimed_amount" value="'.$row['remaining_claim'].'" hidden/>'.$row['remaining_claim'].'</td>';
                             if($row['remaining_claim']>0){
                                 $status = "Incomplete";

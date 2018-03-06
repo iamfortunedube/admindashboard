@@ -133,10 +133,10 @@
                         }
                     }else if($remaing_don_amount < $remaining_claim_amount){
                         $remaining_claim = $remaining_claim_amount - $remaing_don_amount;
-                        $update_donation = "Update donation SET remaining_don = 0,status = 1 WHERE id = ".@$donator_id.";";
+                        $update_donation = "Update donation SET remaining_don = 0,status = 0 WHERE id = ".@$donator_id.";";
                         $ress = mysqli_query($conn,$update_donation);
 
-                        $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."' WHERE id = ".@$claimer.";";
+                        $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."' AND states = 2 WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
                        if($ress){
                             /*-------------------------SMS------------------
@@ -209,7 +209,7 @@
                              
                     }else{
                         $remaining_don = $remaining_claim_amount - $remaing_don_amount;
-                        $update_donation = "Update donation SET remaining_don = 0,status = 1 WHERE id = ".@$donator_id.";";
+                        $update_donation = "Update donation SET remaining_don = 0,status = 0 WHERE id = ".@$donator_id.";";
                         $ress = mysqli_query($conn,$update_donation); 
 
                         $update_claims = "Update claims SET remaining_claim = 0,states = 2 WHERE id = ".@$claimer.";";

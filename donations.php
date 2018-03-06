@@ -141,7 +141,7 @@
                         $update_donation = "Update donation SET remaining_don = 0,status = 0 WHERE id = ".@$donator_id.";";
                         $ress = mysqli_query($conn,$update_donation);
 
-                        $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."' AND states = 2 WHERE id = ".@$claimer.";";
+                        $update_claims = "Update claims SET remaining_claim = '".$remaining_claim."', states = 2 WHERE id = ".@$claimer.";";
                         $resss = mysqli_query($conn,$update_claims);
                        if($ress){
                            /*-------------------------SMS------------------*/

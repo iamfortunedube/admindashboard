@@ -193,7 +193,7 @@
                             
                                 $username = "rovissm@gmail.com";
                                 $password = "Asekhona*03";
-                                $message = "Hi,".$getClaimDetails['fname']." ".$getClaimDetails['lname']."\n\nYou will recieve ".$remaining_claim_amount." from the following details\n-----------------------------\n\nName & Surname : ".$getDonDetails['fname']." ".$getDonDetails['lname']."\nCell Number : ".$getDonDetails['p_number']."\nStatus : Waiting for this transfer\n\nNB : Do not forget to login and click confirm as soon as you recieve the payment\n-----------------------------\nFrom Commercial Club.";
+                                $message = "Hi,".$getClaimDetails['fname']." ".$getClaimDetails['lname']."\n\nYou will recieve ".$remaing_don_amount." from the following details\n-----------------------------\n\nName & Surname : ".$getDonDetails['fname']." ".$getDonDetails['lname']."\nCell Number : ".$getDonDetails['p_number']."\nStatus : Waiting for this transfer\n\nNB : Do not forget to login and click confirm as soon as you recieve the payment\n-----------------------------\nFrom Commercial Club.";
                                 $numbers = $claimer_cell;
                             
                                 $encmessage = urlencode(utf8_encode($message));

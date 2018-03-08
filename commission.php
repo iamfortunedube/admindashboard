@@ -17,7 +17,7 @@
                   </tr>
                 </thead>
                 <tbody>';
-                $select_commission = "select u.id AS 'user_id', u.fname,u.lname,newTable.tot_num_ref,newTable.tot_com,u.p_number from users u,(select DISTINCT refere,count(r.id) AS 'tot_num_ref',sum(r.commission_amount) AS 'tot_com' from referals r,users u where r.refere = u.ref_code AND r.redered = u.p_number GROUP BY r.refere) newTable where u.p_number = newTable.refere;";
+                $select_commission = "select u.id AS 'user_id', u.fname,u.lname,newTable.tot_num_ref,newTable.tot_com,u.p_number from users u,(select DISTINCT refere,count(r.id) AS 'tot_num_ref',sum(r.commission_amount) AS 'tot_com' from referals r,users u where r.refere = u.ref_code AND r.redered = u.p_number GROUP BY r.refere) newTable where u.p_number = newTable.refere ORDER BY newTable.tot_num_ref DESC;";
                 $execute = mysqli_query($conn,$select_commission);
                 if(mysqli_num_rows($execute)>0){
                   while ($row = mysqli_fetch_assoc($execute)){

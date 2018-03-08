@@ -4,6 +4,11 @@
     $select_active_users = "SELECT * FROM `users` where status = 1";
     $res = mysqli_query($conn, $select_active_users);
     $active_users = mysqli_num_rows($res);
+
+    $select_comp_trans = "SELECT * FROM allocation where status = ";
+    $ress = mysqli_query($conn,$select_comp_trans);
+    $complete_trans = mysqli_num_rows($ress);
+
 ?>
 <div class="welcomeTitle mainTitle">
     <h3 style='font-family: "Comic Sans MS", cursive, sans-serif; text-align: center'>Dashboard</h3>
@@ -41,7 +46,7 @@
             <div class="card bg-gradient-success text-white">
                 <div class="card-body" style="border-color: rgb(218,165,32); border-style: solid; border-width: 2px;">
                     <h4 class="font-weight-normal mb-3">Completed Transactions</h4>
-                    <h2 class="font-weight-normal mb-5">8 365</h2>
+                    <h2 class="font-weight-normal mb-5"><?php echo ''.$complete_trans.'';?></h2>
                     <p class="card-text">Increased by 5%</p>
                 </div>
             </div>

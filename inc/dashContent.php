@@ -9,6 +9,20 @@
     $ress = mysqli_query($conn,$select_comp_trans);
     $complete_trans = mysqli_num_rows($ress);
 
+    $curdate = date('Y-m-d');
+
+    $select_day_trans = "SELECT * FROM allocation";
+    $execute_day = mysqli_query($conn, $select_day_trans);
+    $count = 0;
+
+    while($date = mysqli_fetch_assoc($execute_day)){
+        $allocate_date = substr($date['allocated_time'],0,10);
+        //echo $curdate." ,".$allocate_date."<br/>";
+        if($allocate_date == $curdate){
+            $count++;
+        }
+    }
+
 ?>
 <div class="welcomeTitle mainTitle">
     <h3 style='font-family: "Comic Sans MS", cursive, sans-serif; text-align: center'>Dashboard</h3>
@@ -19,7 +33,7 @@
             <div class="card bg-gradient-success text-white">
                 <div class="card-body" style="border-color: rgb(218,165,32); border-style: solid; border-width: 2px;">
                     <h4 class="font-weight-normal mb-3">Today's Transactions</h4>
-                    <h2 class="font-weight-normal mb-5">152</h2>
+                    <h2 class="font-weight-normal mb-5"><?php echo ''.$count.'';?></h2>
                     <p class="card-text">Increased by 30%</p>
                 </div>
             </div>

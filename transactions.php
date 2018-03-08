@@ -1,6 +1,7 @@
 
 <?php 
       include("inc/mainHeader.php");
+      include("server/config.php");
       if(!empty($_SESSION["u_id"])){   
         include("inc/transactionsContent.php");
       }else{

@@ -337,7 +337,7 @@
                             }
                         }echo '
                         </select></td>';
-                        if(!$row['remaining_don']=="0"){
+                        if(!$row['remaining_don']=="0" && mysqli_num_rows($results) <= 0){
                          echo '<td><input type="submit" name="submit" class="btn btn-success" value="Allocate"/></td>';
                         }
                         else{

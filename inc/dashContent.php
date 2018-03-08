@@ -5,7 +5,7 @@
     $res = mysqli_query($conn, $select_active_users);
     $active_users = mysqli_num_rows($res);
 
-    $select_comp_trans = "SELECT * FROM allocation where status = ";
+    $select_comp_trans = "SELECT * FROM allocation where status = 1";
     $ress = mysqli_query($conn,$select_comp_trans);
     $complete_trans = mysqli_num_rows($ress);
 
